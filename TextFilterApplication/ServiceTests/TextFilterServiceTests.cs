@@ -47,5 +47,47 @@ namespace ServiceTests
 
             Assert.AreEqual(expectedText, result);
         }
+
+        [TestMethod]
+        public void TestWordsWithMiddleVowelFilter()
+        {
+            string inputText = "clean what currently the rather";
+
+            string expectedText = "the rather";
+
+            var wordsWithMiddleVowelFilter = new WordsWithMiddleVowelFilter();
+
+            var result = wordsWithMiddleVowelFilter.Apply(inputText);
+
+            Assert.AreEqual(expectedText, result);
+        }
+
+        [TestMethod]
+        public void LengthLessThanThreeFilterFilter()
+        {
+            string inputText = "the ant said hello to me";
+
+            string expectedText = "said hello";
+
+            var lengthLessThanThreeFilter = new LengthLessThanThreeFilter();
+
+            var result = lengthLessThanThreeFilter.Apply(inputText);
+
+            Assert.AreEqual(expectedText, result);
+        }
+
+        [TestMethod]
+        public void WordsWithTFilterFilter()
+        {
+            string inputText = "the ant said hello to me";
+
+            string expectedText = "said hello me";
+
+            var wordsWithTFilter = new WordsWithTFilter();
+
+            var result = wordsWithTFilter.Apply(inputText);
+
+            Assert.AreEqual(expectedText, result);
+        }
     }
 }
