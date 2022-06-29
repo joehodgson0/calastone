@@ -65,9 +65,9 @@ namespace ServiceTests
         [TestMethod]
         public void LengthLessThanThreeFilterFilter()
         {
-            string inputText = "the ant said hello to me";
+            string inputText = "the ox said hello to me";
 
-            string expectedText = "said hello";
+            string expectedText = "the said hello";
 
             var lengthLessThanThreeFilter = new LengthLessThanThreeFilter();
 

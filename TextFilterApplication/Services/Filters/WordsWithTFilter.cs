@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Services.Filters
@@ -11,7 +12,11 @@ namespace Services.Filters
     {
         public string Apply(string inputText)
         {
-            throw new NotImplementedException();
+            var words = inputText.Split(' ');
+
+            var wordsAfterFilter = words.Where(word => !word.Contains('t'));
+
+            return string.Join(' ', wordsAfterFilter);
         }
     }
 }
