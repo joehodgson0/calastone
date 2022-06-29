@@ -1,40 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
 using System.Threading.Tasks;
-using Services.Filters;
-using Services.Readers;
+using Autofac;
 
 namespace TextFilterApplication
 {
     internal class Program
     {
-        static async Task Main(string[] args)
+        public static async Task<int> Main(string[] args)
         {
-            Console.WriteLine("This program will apply 3 filters to the text in the file");
-
-            string fileName = "SampleText.txt";
-
-            var textFromFileReader = new TextFromFileReader();
-
-            var assembly = Assembly.GetExecutingAssembly();
-            var resourceNamespace = $"{typeof(Program).Namespace}";
-
-            var textFromFile = await textFromFileReader.GetStringFromEmbeddedResourceTxtFile(assembly, resourceNamespace, fileName);
-
-            var filters = new List<IFilter>()
+            try
             {
-                new WordsWithMiddleVowelFilter(),
-                new LengthLessThanThreeFilter(),
-                new WordsWithTFilter(),
-            };
+                var container = ContainerConfiguration.BuildContainer();
+                var app = container.Resolve<ITextFilterApp>();
 
-            var textFilterService = new TextFilterService(filters);
+                string fileName = "SampleText.txt";
+                await app.RunFilterAgainstFileAsync(fileName);
 
-            string resultAfterFilters = textFilterService.ApplyFilters(textFromFile);
-
-            Console.WriteLine($"Result: {resultAfterFilters}");
-
+                return 0;
+            }
+            catch (Exception exception)
+            {
+                ConsoleExtensions.WriteLineInColor($"Fatal error: '{exception.Message}'.", ConsoleColor.Red);
+                return -1;
+            }
         }
     }
 }
