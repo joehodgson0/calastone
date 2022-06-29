@@ -32,7 +32,13 @@ namespace TextFilterApplication
 
             string resultAfterFilters = _textFilterService.ApplyFilters(textFromFile);
 
+            var newLine = Environment.NewLine;
+            string resultWithoutCarriageReturns = resultAfterFilters.Replace(newLine, " ");
+
+            Console.WriteLine();
             Console.WriteLine($"Result: {resultAfterFilters}");
+            Console.WriteLine();
+            Console.WriteLine($"Result without carriage returns: {resultWithoutCarriageReturns}");
         }
     }
 }
