@@ -13,6 +13,12 @@ namespace TextFilterApplication
     {
         private readonly ITextFromFileReader _textFromFileReader;
         private readonly ITextFilterService _textFilterService;
+
+        /// <summary>
+        /// IOC Constructor
+        /// </summary>
+        /// <param name="textFromFileReader">Reads the text from a file</param>
+        /// <param name="textFilterService">applies all the filters</param>
         public TextFilterApp(
             ITextFromFileReader textFromFileReader,
             ITextFilterService textFilterService)
@@ -21,6 +27,7 @@ namespace TextFilterApplication
             _textFilterService = textFilterService;
         }
 
+        /// <inheritdoc/>
         public async Task RunFilterAgainstFileAsync(string fileName)
         {
             Console.WriteLine("This program will apply 3 filters to the text in the file");

@@ -10,6 +10,11 @@ namespace TextFilterApplication
     /// </summary>
     internal interface ITextFilterApp
     {
+        /// <summary>
+        /// Run all filters against the text in the input file
+        /// </summary>
+        /// <param name="fileName">the filename of the file containing the text</param>
+        /// <returns>the result after applying the filters</returns>
         Task RunFilterAgainstFileAsync(string fileName);
     }
 }

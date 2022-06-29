@@ -13,6 +13,7 @@ namespace Services.Filters
     /// </summary>
     public class WordsWithMiddleVowelFilter : IFilter
     {
+        /// <inheritdoc />
         public string Apply(string inputText)
         {
             var words = inputText.Split(' ');
